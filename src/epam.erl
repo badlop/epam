@@ -112,7 +112,10 @@ init([]) ->
     end.
 
 terminate(_Reason, #state{port = Port}) ->
-    catch port_close(Port), ok.
+    try port_close(Port)
+    catch _:_ -> error
+    end,
+    ok.
 
 handle_call({authenticate, Srv, User, Pass, Rhost}, From,
 	    State) ->
