@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: libpam-dev libyaml-dev
+        packages: libpam0g-dev libyaml-dev
     - run: ./configure
     - run: rebar3 compile
     - run: rebar3 xref
