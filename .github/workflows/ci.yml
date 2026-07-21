@@ -15,10 +15,9 @@ jobs:
       image: erlang:${{ matrix.otp }}
     steps:
     - uses: actions/checkout@v2
-    - name: Prepare libraries
-      run: |
-        apt-get -qq update
-        apt-get -qq install libpam-dev
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages:  libpam-dev
     - run: ./configure
     - run: rebar3 compile
     - run: rebar3 xref
