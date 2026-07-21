@@ -14,8 +14,8 @@ jobs:
     container:
       image: erlang:${{ matrix.otp }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: awalsh128/cache-apt-pkgs-action@latest
+    - uses: actions/checkout@v6
+    - uses: awalsh128/cache-apt-pkgs-action@master
       with:
         packages: libpam0g-dev libyaml-dev
     - run: ./configure
