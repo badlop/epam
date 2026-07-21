@@ -11,13 +11,15 @@ jobs:
       matrix:
         otp: [29]
     runs-on: ubuntu-24.04-arm
-    container:
-      image: erlang:${{ matrix.otp }}
     steps:
     - uses: actions/checkout@v6
+
     - uses: awalsh128/cache-apt-pkgs-action@master
       with:
         packages: libpam0g-dev libyaml-dev
+    - uses: erlef/setup-beam@v1
+      with:
+        otp-version: ${{ matrix.otp }}
     - run: ./configure
     - run: rebar3 compile
     - run: rebar3 xref
